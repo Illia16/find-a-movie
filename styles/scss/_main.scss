@@ -1,0 +1,62 @@
+.results {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.results .movie-container,
+.watched-movies .movie-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px;
+    // width: calc(100%/3 - 40px);
+    // min-width: 200px;
+    border: 2px solid #4A455C;
+    flex: 1 0 250px;
+    padding-bottom: 20px;
+    background: beige;
+}
+
+.results .movie-container .poster,
+.watched-movies .movie-container .poster {
+    width: 100%;
+}
+
+.movie-container > *:not(:first-child) {
+    padding: 10px;
+    margin: 5px;
+}
+
+.description{
+    transition: height 3s ease-in-out;
+}
+.description:not([open]) { height: 60px;}
+.description[open] { height: 100%; }
+
+.description p {
+    overflow-y: scroll;
+    max-height: 300px;
+}
+
+.restart {
+    padding: 50px 0;
+    display: none;
+}
+
+.restart button {
+    width: 200px;
+    padding: 20px;
+    margin: 50px;
+    background: #4A455C;
+    color: #FFF;
+}
+
+.results .movie-container:hover,
+.results .movie-container:focus {
+    -ms-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    transition-delay: 0.15s;
+}

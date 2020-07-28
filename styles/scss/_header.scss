@@ -1,0 +1,143 @@
+// navigation
+div.watched-movies {
+    background: goldenrod;
+	position: fixed;
+	z-index: 5;
+    width: 400px;
+	left: -200%;
+    // top: calc(100vh/2 - 400px/2);
+    // bottom: calc(100vh/2 - 400px/2);
+    top: 15%;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    overflow-y: scroll;
+}
+
+div.watched-movies-show {
+    left: 0;
+    // left: calc(100vw/2 - 400px/2);
+}
+
+.watched-movies > * {
+    margin: 0 auto;
+}
+
+.seen {
+    position: fixed;
+    left: 1%;
+    top: 1%;
+    font-size: 3rem;
+    z-index: 10;
+    width: 100px;
+}
+
+.seen:hover,
+.seen:focus {
+    color: #4A455C;
+}
+
+nav button span {
+    display: block;
+    font-size: 1rem;
+}
+
+nav button {
+    border-radius: 5px;
+    padding: 0;
+    margin: 0;
+}
+
+// header with genres
+header {
+    height: 100vh;
+}
+
+.genres {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    flex-direction: column;
+    height: 60%;
+    align-content: space-between;
+}
+
+.everyGenre {
+    padding: 10px 30px;
+    margin: 20px;
+}
+
+.everyGenre input[type="checkbox"]:focus:checked + label,
+.everyGenre input[type="checkbox"]:checked + label {
+    background: #4A455C;
+    padding: 10px 20px;
+    color: white;
+}
+
+input[type="checkbox"] {
+    // display: none;
+    opacity: 0;
+}
+
+.everyGenre label {
+    padding: 10px 20px;
+    border: 1px solid transparent;
+}
+
+.search-bar input[type="submit"],
+button[type='button'] {
+    padding: 10px 20px;
+    border: 1px solid black;
+    background: #4A455C;
+    color: #fff;
+}
+
+.search-bar input[type="submit"] {
+    width: 150px;
+    height: 47.2px;
+}
+
+.search-bar input[type="text"] {
+    width: 400px;
+    background: transparent;
+    padding: 10px 20px;
+    border: 1px solid black;
+}
+
+.search-bar input[type="text"].warning {
+    border: 1px solid red;
+    animation: shake 1s cubic-bezier(.17,.67,.83,.67);
+}
+
+
+@keyframes shake {
+    10%, 90% {
+      transform: translate3d(0, -1px, 0);
+    }
+    
+    20%, 80% {
+      transform: translate3d(0, 2px, 0);
+    }
+  
+    30%, 50%, 70% {
+      transform: translate3d(0, -5px, 0);
+    }
+  
+    40%, 60% {
+      transform: translate3d(0, 5px, 0);
+    }
+}
+
+.everyGenre label:hover,
+.everyGenre input[type="checkbox"]:focus + label,
+.search-bar input[type="submit"]:hover,
+.search-bar input[type="submit"]:focus,
+button:hover,
+button:focus,
+.restart button:hover,
+.restart button:focus {
+    color: #4A455C;
+    background: white;
+    border: 1px solid #4A455C;
+    cursor: pointer;
+}
