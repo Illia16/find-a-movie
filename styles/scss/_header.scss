@@ -89,7 +89,7 @@ header form {
 .search-bar input[type="submit"],
 button[type='button'] {
     padding: 10px 20px;
-    border: 1px solid black;
+    border: 1px solid transparent;
     background: #4A455C;
     color: #fff;
 }
@@ -103,7 +103,7 @@ button[type='button'] {
     width: 400px;
     background: transparent;
     padding: 10px 20px;
-    border: 1px solid black;
+    border: 1px solid #4A455C;
 }
 
 .search-bar input[type="text"].warning {
