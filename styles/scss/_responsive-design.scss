@@ -2,10 +2,6 @@
     .genres {
         height: 100%;
     }
-
-    header {
-        margin-bottom: 40%;
-    }
 }
 
 @media (max-width: 850px) {
@@ -21,13 +17,8 @@
         width: 80%;
     }
 
-    header {
-        height: 20%;
-        margin-bottom: 100px;
-    }
-
     div.watched-movies {
-        width: 80%;
+        width: 60%;
     }
 }
 

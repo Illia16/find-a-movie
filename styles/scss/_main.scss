@@ -11,10 +11,8 @@
     justify-content: space-between;
     align-items: center;
     margin: 30px;
-    // width: calc(100%/3 - 40px);
-    // min-width: 200px;
     border: 2px solid #4A455C;
-    flex: 1 0 250px;
+    flex: 1 0 200px;
     padding-bottom: 20px;
     background: beige;
 }
@@ -55,8 +53,9 @@
 
 .results .movie-container:hover,
 .results .movie-container:focus {
-    -ms-transform: scale(1.1);
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
+    border: 2px solid #b9dd19;
+    -ms-transform: scale(1.02);
+    -webkit-transform: scale(1.02);
+    transform: scale(1.02);
     transition-delay: 0.15s;
 }

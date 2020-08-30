@@ -1,12 +1,10 @@
 // navigation
 div.watched-movies {
-    background: goldenrod;
+    background: #b71b1b;
 	position: fixed;
 	z-index: 5;
     width: 400px;
 	left: -200%;
-    // top: calc(100vh/2 - 400px/2);
-    // bottom: calc(100vh/2 - 400px/2);
     top: 15%;
     bottom: 0;
     margin: 0;
@@ -16,7 +14,6 @@ div.watched-movies {
 
 div.watched-movies-show {
     left: 0;
-    // left: calc(100vw/2 - 400px/2);
 }
 
 .watched-movies > * {
@@ -50,16 +47,16 @@ nav button {
 
 // header with genres
 header {
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .genres {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    flex-direction: column;
-    height: 60%;
-    align-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 300px));
+    grid-gap: 20px;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
 }
 
 .everyGenre {
@@ -75,13 +72,18 @@ header {
 }
 
 input[type="checkbox"] {
-    // display: none;
     opacity: 0;
+    position: absolute;
 }
 
 .everyGenre label {
     padding: 10px 20px;
     border: 1px solid transparent;
+    white-space: nowrap;
+}
+
+header form {
+    margin: 30px 0;
 }
 
 .search-bar input[type="submit"],
@@ -109,22 +111,22 @@ button[type='button'] {
     animation: shake 1s cubic-bezier(.17,.67,.83,.67);
 }
 
-
+// animation for shaking invalid input
 @keyframes shake {
     10%, 90% {
-      transform: translate3d(0, -1px, 0);
+        transform: translate3d(0, -1px, 0);
     }
     
     20%, 80% {
-      transform: translate3d(0, 2px, 0);
+        transform: translate3d(0, 2px, 0);
     }
-  
+
     30%, 50%, 70% {
-      transform: translate3d(0, -5px, 0);
+        transform: translate3d(0, -5px, 0);
     }
-  
+
     40%, 60% {
-      transform: translate3d(0, 5px, 0);
+        transform: translate3d(0, 5px, 0);
     }
 }
 
