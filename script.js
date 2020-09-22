@@ -63,6 +63,7 @@ moviesApp.selectGenre = function() {
         // 3. Is a number);
 
         if ( (ids.length !== 0 || year == '' || year >= 1873) && (!isNaN(year)) ) {
+                console.log(ids);
                 moviesApp.getMovies(ids, year);
                 moviesApp.scroll('.results');
 
