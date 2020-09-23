@@ -17,7 +17,7 @@ Find a movie based on genre(s) and/or release year from The Movie Database API.
 4. Click RESTART to clear results and start a new search
 
 ## Live link
-[Explore Space](https://illia16.github.io/find-a-movie/)
+[Find a movie](https://illia16.github.io/find-a-movie/)
 
 ### To install locally
 * Clone the repo via terminal `git clone HTTPS URL`
