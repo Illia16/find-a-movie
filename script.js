@@ -187,7 +187,7 @@ moviesApp.addToWatched = () => {
         $(prevSibl).clone().prependTo("div.watched-movies");
 
         // removing the button "Add to watched" as it's already gonna be there
-        $('div.watched-movies .movie-container button').remove();
+        // $('div.watched-movies .movie-container button').remove();
 
         // filling the space with a random movie
         moviesApp.getRandomMovie();

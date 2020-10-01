@@ -11,10 +11,14 @@
     justify-content: space-between;
     align-items: center;
     margin: 30px;
-    border: 2px solid #4A455C;
+    border: 2px solid #E50914;
     flex: 1 0 200px;
     padding-bottom: 20px;
-    background: beige;
+    // background: rgba(201, 23, 23, 0.8);
+    background: rgba(244, 244, 244, 0.8);
+    color: #000000;
+    
+    // background: beige;
 }
 
 .results .movie-container .poster,
@@ -43,19 +47,15 @@
     display: none;
 }
 
-.restart button {
-    width: 200px;
-    padding: 20px;
-    margin: 50px;
-    background: #4A455C;
-    color: #FFF;
+.movie-container button {
+    background: rgba(0, 0, 0, 0.93);
 }
 
-.results .movie-container:hover,
-.results .movie-container:focus {
-    border: 2px solid #b9dd19;
-    -ms-transform: scale(1.02);
-    -webkit-transform: scale(1.02);
-    transform: scale(1.02);
-    transition-delay: 0.15s;
-}
+// .results .movie-container:hover,
+// .results .movie-container:focus-within {
+//     // border: 2px solid #b9dd19;
+//     -ms-transform: scale(1.01);
+//     -webkit-transform: scale(1.01);
+//     transform: scale(1.01);
+//     transition-delay: 0.15s;
+// }

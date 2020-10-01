@@ -29,10 +29,10 @@ div.watched-movies-show {
     width: 100px;
 }
 
-.seen:hover,
-.seen:focus {
-    color: #4A455C;
-}
+// .seen:hover,
+// .seen:focus {
+//     color: #E50914;
+// }
 
 nav button span {
     display: block;
@@ -48,25 +48,28 @@ nav button {
 // header with genres
 header {
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .genres {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 300px));
-    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, 175px);
+    grid-gap: 30px;
     justify-content: center;
     justify-items: center;
     align-items: center;
 }
 
-.everyGenre {
-    padding: 10px 30px;
-    margin: 20px;
-}
+// .everyGenre {
+//     padding: 10px 30px;
+//     margin: 20px;
+// }
 
 .everyGenre input[type="checkbox"]:focus:checked + label,
 .everyGenre input[type="checkbox"]:checked + label {
-    background: #4A455C;
+    background: #E50914;
     padding: 10px 20px;
     color: white;
 }
@@ -77,9 +80,13 @@ input[type="checkbox"] {
 }
 
 .everyGenre label {
+    width: 175px;
+    display: inline-block;
     padding: 10px 20px;
     border: 1px solid transparent;
     white-space: nowrap;
+
+    background: rgba(0, 0, 0, 0.93);
 }
 
 header form {
@@ -87,27 +94,44 @@ header form {
 }
 
 .search-bar input[type="submit"],
-button[type='button'] {
+button[type='button'],
+.restart button {
     padding: 10px 20px;
     border: 1px solid transparent;
-    background: #4A455C;
+}
+
+button[type='button'] {
+    background: transparent;
     color: #fff;
 }
 
-.search-bar input[type="submit"] {
+.search-bar input[type="submit"],
+.restart button {
     width: 150px;
-    height: 47.2px;
+    height: 44px;
+    background: #ffffff;
+    color: #E50914;
 }
+
+// .search-bar input[type="submit"] {
+//     width: 150px;
+//     height: 44px;
+// }
 
 .search-bar input[type="text"] {
     width: 400px;
-    background: transparent;
     padding: 10px 20px;
-    border: 1px solid #4A455C;
+    background: transparent;
+    border: 1px solid #E50914;
+    color: #ffffff;
+}
+
+::placeholder {
+    opacity: 1;
 }
 
 .search-bar input[type="text"].warning {
-    border: 1px solid red;
+    border: 1px solid #E50914;
     animation: shake 1s cubic-bezier(.17,.67,.83,.67);
 }
 
@@ -132,14 +156,28 @@ button[type='button'] {
 
 .everyGenre label:hover,
 .everyGenre input[type="checkbox"]:focus + label,
-.search-bar input[type="submit"]:hover,
-.search-bar input[type="submit"]:focus,
+.search-bar input[type="text"]:hover,
+.search-bar input[type="text"]:focus,
 button:hover,
-button:focus,
 .restart button:hover,
 .restart button:focus {
-    color: #4A455C;
-    background: white;
-    border: 1px solid #4A455C;
+    color: #E50914;
+    background: #ffffff;
+    border: 1px solid transparent;
     cursor: pointer;
+}
+
+.search-bar input[type="submit"]:hover,
+.search-bar input[type="submit"]:focus,
+.restart button:hover,
+.restart button:focus {
+    color: #ffffff;
+    background: #E50914;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+button:focus {
+    color: #ffffff;
+    background: #E50914;
 }

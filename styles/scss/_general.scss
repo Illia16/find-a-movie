@@ -8,19 +8,28 @@ html {
 }
 
 body {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
 	font-family: 'Lato', sans-serif;
     font-weight: 400;
-    color: #4A455C;
+    // color: #E50914;
+    color: #ffffff;
+    // color: #4A455C;
     line-height: 1.6;
     text-align: center;
     margin: 0;
     padding: 0;
+
+    // background: url(../assets/myke-simon-atsUqIm3wxo-unsplash.jpg);
+    background: url(../assets/serena-wong-SdjA-_Xzuxg-unsplash.jpg);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 .wrapper {
     max-width: 1920px;
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
 }
 
@@ -33,12 +42,12 @@ img {
 
 // headings
 h1 {
-    font-size: 5rem;
+    font-size: 8rem;
     font-weight: 700;
     margin: 0;
 }
 
 h2 {
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: initial;
 }
