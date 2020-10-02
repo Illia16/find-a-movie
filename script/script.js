@@ -191,16 +191,12 @@ moviesApp.showWatched = () => {
     });
 }
 
-let prevSibl = '';
-
 //adding a movie to seen
 moviesApp.addToWatched = () => {
 
     $('.results').on('click', 'button[type="button"]', function(event){
         event.preventDefault();
-
-        // removing the movie from the list
-        $(this).parent().remove()
+        moviesApp.prevSibl = $(this).parent();
 
         //adding movie to database which also adds it back to the "seen" section
         const seenMovie = $(this).parent().html().replace('Add to watched', 'Remove from watched');
@@ -242,7 +238,7 @@ moviesApp.getRandomMovie = function() {
         moviesApp.foundResults(movieName);
 
         // replacing a previous movie(that went to SEEN section with a new RANDOM movie)
-        $(prevSibl).replaceWith(foundResults);        
+        $(moviesApp.prevSibl).replaceWith(foundResults);
     });
 }
 
