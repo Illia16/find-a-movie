@@ -258,6 +258,7 @@ body {
   text-align: center;
   margin: 0;
   padding: 0;
+  list-style: none;
   background: url(../assets/serena-wong-SdjA-_Xzuxg-unsplash.jpg);
   background-position: top;
   background-repeat: no-repeat;
@@ -535,6 +536,10 @@ button:focus {
   padding-bottom: 20px;
   background: rgba(244, 244, 244, 0.8);
   color: #000000;
+}
+
+.watched-movies li {
+  width: 90%;
 }
 
 .results .movie-container .poster,

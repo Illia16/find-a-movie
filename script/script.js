@@ -1,5 +1,27 @@
 const moviesApp = {};
 
+moviesApp.firebaseConfig = {
+    apiKey: "AIzaSyDvPY5vsRfe3s3pkKi0JP286J_GH2pS3uI",
+    authDomain: "findamovie-a778c.firebaseapp.com",
+    databaseURL: "https://findamovie-a778c.firebaseio.com",
+    projectId: "findamovie-a778c",
+    storageBucket: "findamovie-a778c.appspot.com",
+    messagingSenderId: "546076329719",
+    appId: "1:546076329719:web:84f3c522c684a65b75b5f2"
+};
+
+// Initialize Firebase
+firebase.initializeApp(moviesApp.firebaseConfig);
+
+moviesApp.dbRef = firebase.database().ref("users/seenMovies");
+console.log(moviesApp.dbRef);
+
+
+// moviesApp.dbRef.on('value', (data) => {
+//     const dataObject = data.val();
+//     console.log("Firebase Data:", dataObject);
+// })
+
 // getting all genres names and their IDs
 moviesApp.getGenresId = () => {
     $.ajax({
@@ -184,10 +206,13 @@ moviesApp.addToWatched = () => {
         console.log(prevSibl);
 
         // appending the saved movie on the side bar
-        $(prevSibl).clone().prependTo("div.watched-movies");
+        $(prevSibl).clone().prependTo("ul.watched-movies");
 
         // removing the button "Add to watched" as it's already gonna be there
-        // $('div.watched-movies .movie-container button').remove();
+        $('ul.watched-movies .movie-container button').remove();
+
+        const seenMovie = $(this).parent().html().replace('Add to watched', 'Remove from watched');
+        moviesApp.dbRef.push(seenMovie);
 
         // filling the space with a random movie
         moviesApp.getRandomMovie();
@@ -226,7 +251,33 @@ moviesApp.scroll = function(element) {
 	);
 };
 
+moviesApp.getSeenMovies = function() {
+    moviesApp.dbRef.on('value', (data) => {
+        // save database JSON object within a variable
+        const dataObject = data.val();
+        console.log(dataObject);
+
+        // create empty array which represents our list of TO DO items {specifically each individual <li> element}
+        const arrOfSeen = [];
+    
+        // //loop through the database object and push an <li> element into the To Do List array
+        for (property in dataObject) {
+            console.log(property, dataObject[property]);
+            arrOfSeen.push(`<li data-key=${property}>${dataObject[property]}</li>`)
+            console.log(arrOfSeen);
+        }
+    
+        // //select the <ul> element and add the <li>s from the To Do list array to the page
+        $('.watched-movies').html(arrOfSeen);
+        
+    })
+}
+
+
+
+
 moviesApp.init = function() {
+    moviesApp.getSeenMovies();
     moviesApp.getGenresId();
     moviesApp.selectGenre();
     moviesApp.startOver();
