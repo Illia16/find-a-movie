@@ -17,12 +17,15 @@
     // background: rgba(201, 23, 23, 0.8);
     background: rgba(244, 244, 244, 0.8);
     color: #000000;
-    
     // background: beige;
 }
 
 .watched-movies li {
-    width: 90%;
+    margin: 40px 5%;
+    background: rgba(244, 244, 244, 0.2);
+    padding-bottom: 30px;
+    color: #000000;
+
 }
 
 .results .movie-container .poster,
@@ -51,7 +54,8 @@
     display: none;
 }
 
-.movie-container button {
+.movie-container button,
+.watched-movies button {
     background: rgba(0, 0, 0, 0.93);
 }
 

@@ -160,7 +160,9 @@ button[type='button'] {
 .search-bar input[type="text"]:focus,
 button:hover,
 .restart button:hover,
-.restart button:focus {
+.restart button:focus,
+.watched-movies button:hover,
+.watched-movies button:focus {
     color: #E50914;
     background: #ffffff;
     border: 1px solid transparent;

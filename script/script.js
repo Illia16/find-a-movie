@@ -14,8 +14,6 @@ moviesApp.firebaseConfig = {
 firebase.initializeApp(moviesApp.firebaseConfig);
 
 moviesApp.dbRef = firebase.database().ref("users/seenMovies");
-console.log(moviesApp.dbRef);
-
 
 // moviesApp.dbRef.on('value', (data) => {
 //     const dataObject = data.val();
@@ -201,21 +199,27 @@ moviesApp.addToWatched = () => {
     $('.results').on('click', 'button[type="button"]', function(event){
         event.preventDefault();
 
-        prevSibl = $(this).parent();
-        console.log(this);
-        console.log(prevSibl);
+        // removing the movie from the list
+        $(this).parent().remove()
 
-        // appending the saved movie on the side bar
-        $(prevSibl).clone().prependTo("ul.watched-movies");
-
-        // removing the button "Add to watched" as it's already gonna be there
-        $('ul.watched-movies .movie-container button').remove();
-
+        //adding movie to database which also adds it back to the "seen" section
         const seenMovie = $(this).parent().html().replace('Add to watched', 'Remove from watched');
         moviesApp.dbRef.push(seenMovie);
 
-        // filling the space with a random movie
+        // filling the space with a movie
         moviesApp.getRandomMovie();
+    });
+}
+
+
+moviesApp.removeFromWatched = () => {
+
+    $('.watched-movies').on('click', 'button[type="button"]', function(event){
+        event.preventDefault();
+        const key = $(this).parent().attr('data-key');
+        $(this).parent().remove();
+        moviesApp.dbRef.child(key).remove();
+
     });
 }
 
@@ -253,21 +257,16 @@ moviesApp.scroll = function(element) {
 
 moviesApp.getSeenMovies = function() {
     moviesApp.dbRef.on('value', (data) => {
-        // save database JSON object within a variable
         const dataObject = data.val();
-        console.log(dataObject);
 
-        // create empty array which represents our list of TO DO items {specifically each individual <li> element}
+        // create empty array with seen movies
         const arrOfSeen = [];
     
-        // //loop through the database object and push an <li> element into the To Do List array
+        //loop through the database object and push an <li> element into seen array
         for (property in dataObject) {
-            console.log(property, dataObject[property]);
             arrOfSeen.push(`<li data-key=${property}>${dataObject[property]}</li>`)
-            console.log(arrOfSeen);
         }
-    
-        // //select the <ul> element and add the <li>s from the To Do list array to the page
+        //select the <ul> element and add the list of seen movies from the above array
         $('.watched-movies').html(arrOfSeen);
         
     })
@@ -283,6 +282,7 @@ moviesApp.init = function() {
     moviesApp.startOver();
     moviesApp.showWatched();
     moviesApp.addToWatched();
+    moviesApp.removeFromWatched();
 }
 
 //Document ready
