@@ -1,31 +1,29 @@
 .results {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 350px));
+    grid-gap: 30px;
+    justify-content: center;
+    margin-bottom: 30px;
 }
 
 .results .movie-container,
-.watched-movies .movie-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    margin: 30px;
+.results .movie-container-back,
+.watched-movies li {
     border: 2px solid #E50914;
-    flex: 1 0 200px;
     padding-bottom: 20px;
-    // background: rgba(201, 23, 23, 0.8);
     background: rgba(244, 244, 244, 0.8);
     color: #000000;
-    // background: beige;
 }
 
 .watched-movies li {
     margin: 40px 5%;
-    background: rgba(244, 244, 244, 0.2);
     padding-bottom: 30px;
-    color: #000000;
+    min-height: 50vh;
 
+    button {
+        padding: 10px;
+        margin: 5px;
+    }
 }
 
 .results .movie-container .poster,
@@ -38,32 +36,42 @@
     margin: 5px;
 }
 
-.description{
-    transition: height 3s ease-in-out;
-}
-.description:not([open]) { height: 60px;}
-.description[open] { height: 100%; }
-
-.description p {
-    overflow-y: scroll;
-    max-height: 300px;
-}
-
 .restart {
     padding: 50px 0;
     display: none;
 }
 
-.movie-container button,
+.single-movie button,
 .watched-movies button {
     background: rgba(0, 0, 0, 0.93);
 }
 
-// .results .movie-container:hover,
-// .results .movie-container:focus-within {
-//     // border: 2px solid #b9dd19;
-//     -ms-transform: scale(1.01);
-//     -webkit-transform: scale(1.01);
-//     transform: scale(1.01);
-//     transition-delay: 0.15s;
-// }
+// FLIP //////////////////////////////////////////
+.watched-movies li,
+.single-movie {
+    position: relative;
+    text-align: center;
+    transition: transform .5s;
+    transform-style: preserve-3d;
+    display: flex;
+}
+
+.movie-container-back {
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    padding: 5px 10%;
+    overflow-y: scroll;
+    min-height: 50vh;
+}
+
+.movie-container-back {
+    transform: rotateY(180deg);
+}
+
+.movie-container-flipped {
+    transform: rotateY(180deg);
+}

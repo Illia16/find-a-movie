@@ -29,11 +29,6 @@ div.watched-movies-show {
     width: 100px;
 }
 
-// .seen:hover,
-// .seen:focus {
-//     color: #E50914;
-// }
-
 nav button span {
     display: block;
     font-size: 1rem;
@@ -61,11 +56,6 @@ header {
     justify-items: center;
     align-items: center;
 }
-
-// .everyGenre {
-//     padding: 10px 30px;
-//     margin: 20px;
-// }
 
 .everyGenre input[type="checkbox"]:focus:checked + label,
 .everyGenre input[type="checkbox"]:checked + label {
@@ -108,22 +98,17 @@ button[type='button'] {
 .search-bar input[type="submit"],
 .restart button {
     width: 150px;
-    height: 44px;
     background: #ffffff;
     color: #E50914;
 }
 
-// .search-bar input[type="submit"] {
-//     width: 150px;
-//     height: 44px;
-// }
-
 .search-bar input[type="text"] {
     width: 400px;
     padding: 10px 20px;
-    background: transparent;
-    border: 1px solid #E50914;
-    color: #ffffff;
+    color: #E50914;
+    background: #ffffff;
+    border: 1px solid transparent;
+    cursor: pointer;
 }
 
 ::placeholder {
@@ -156,9 +141,6 @@ button[type='button'] {
 
 .everyGenre label:hover,
 .everyGenre input[type="checkbox"]:focus + label,
-.search-bar input[type="text"]:hover,
-.search-bar input[type="text"]:focus,
-button:hover,
 .restart button:hover,
 .restart button:focus,
 .watched-movies button:hover,
@@ -169,12 +151,18 @@ button:hover,
     cursor: pointer;
 }
 
+.single-movie button:hover,
+.single-movie button:focus,
+.watched-movies button:hover,
+.watched-movies button:focus,
+.search-bar input[type="text"]:hover,
+.search-bar input[type="text"]:focus,
 .search-bar input[type="submit"]:hover,
 .search-bar input[type="submit"]:focus,
 .restart button:hover,
 .restart button:focus {
     color: #ffffff;
-    background: #E50914;
+    background: rgba($color: #E50914, $alpha: 0.9);
     border: 1px solid transparent;
     cursor: pointer;
 }
