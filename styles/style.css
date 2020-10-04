@@ -401,7 +401,6 @@ button[type='button'] {
 .search-bar input[type="submit"],
 .restart button {
   width: 150px;
-  height: 44px;
   background: #ffffff;
   color: #E50914;
 }
@@ -409,9 +408,10 @@ button[type='button'] {
 .search-bar input[type="text"] {
   width: 400px;
   padding: 10px 20px;
-  background: transparent;
-  border: 1px solid #E50914;
-  color: #ffffff;
+  color: #E50914;
+  background: #ffffff;
+  border: 1px solid transparent;
+  cursor: pointer;
 }
 
 ::-webkit-input-placeholder {
@@ -476,9 +476,6 @@ button[type='button'] {
 
 .everyGenre label:hover,
 .everyGenre input[type="checkbox"]:focus + label,
-.search-bar input[type="text"]:hover,
-.search-bar input[type="text"]:focus,
-button:hover,
 .restart button:hover,
 .restart button:focus,
 .watched-movies button:hover,
@@ -489,12 +486,18 @@ button:hover,
   cursor: pointer;
 }
 
+.single-movie button:hover,
+.single-movie button:focus,
+.watched-movies button:hover,
+.watched-movies button:focus,
+.search-bar input[type="text"]:hover,
+.search-bar input[type="text"]:focus,
 .search-bar input[type="submit"]:hover,
 .search-bar input[type="submit"]:focus,
 .restart button:hover,
 .restart button:focus {
   color: #ffffff;
-  background: #E50914;
+  background: rgba(229, 9, 20, 0.9);
   border: 1px solid transparent;
   cursor: pointer;
 }
@@ -505,36 +508,21 @@ button:focus {
 }
 
 .results {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(150px, 350px))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(150px, 350px));
+  grid-gap: 30px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 30px;
 }
 
 .results .movie-container,
-.watched-movies .movie-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin: 30px;
+.results .movie-container-back,
+.watched-movies li {
   border: 2px solid #E50914;
-  -webkit-box-flex: 1;
-      -ms-flex: 1 0 200px;
-          flex: 1 0 200px;
   padding-bottom: 20px;
   background: rgba(244, 244, 244, 0.8);
   color: #000000;
@@ -542,9 +530,13 @@ button:focus {
 
 .watched-movies li {
   margin: 40px 5%;
-  background: rgba(244, 244, 244, 0.2);
   padding-bottom: 30px;
-  color: #000000;
+  min-height: 50vh;
+}
+
+.watched-movies li button {
+  padding: 10px;
+  margin: 5px;
 }
 
 .results .movie-container .poster,
@@ -557,32 +549,51 @@ button:focus {
   margin: 5px;
 }
 
-.description {
-  -webkit-transition: height 3s ease-in-out;
-  transition: height 3s ease-in-out;
-}
-
-.description:not([open]) {
-  height: 60px;
-}
-
-.description[open] {
-  height: 100%;
-}
-
-.description p {
-  overflow-y: scroll;
-  max-height: 300px;
-}
-
 .restart {
   padding: 50px 0;
   display: none;
 }
 
-.movie-container button,
+.single-movie button,
 .watched-movies button {
   background: rgba(0, 0, 0, 0.93);
+}
+
+.watched-movies li,
+.single-movie {
+  position: relative;
+  text-align: center;
+  -webkit-transition: -webkit-transform .5s;
+  transition: -webkit-transform .5s;
+  transition: transform .5s;
+  transition: transform .5s, -webkit-transform .5s;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.movie-container-back {
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  padding: 5px 10%;
+  overflow-y: scroll;
+  min-height: 50vh;
+}
+
+.movie-container-back {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+}
+
+.movie-container-flipped {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
 }
 
 @media (max-width: 1380px) {

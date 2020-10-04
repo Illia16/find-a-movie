@@ -15,11 +15,6 @@ firebase.initializeApp(moviesApp.firebaseConfig);
 
 moviesApp.dbRef = firebase.database().ref("users/seenMovies");
 
-// moviesApp.dbRef.on('value', (data) => {
-//     const dataObject = data.val();
-//     console.log("Firebase Data:", dataObject);
-// })
-
 // getting all genres names and their IDs
 moviesApp.getGenresId = () => {
     $.ajax({
@@ -76,14 +71,15 @@ moviesApp.selectGenre = function() {
             });
 
         const year = $('input[type="text"]').val();
+        const currentYear = new Date().getFullYear();
+
         
         // checking if any genres selected and that the year has a valid input
         // 1. " " = no choice for year; 
         // 2. 1873 = the first ever movie; 
-        // 3. Is a number);
-
-        if ( (ids.length !== 0 || year == '' || year >= 1873) && (!isNaN(year)) ) {
-                console.log(ids);
+        // 3. Is a number;
+        // 4. Making sure that user's year isn't greater than currentYear;
+        if ( (ids.length !== 0 || year == '' || year >= 1873) && (!isNaN(year) && year <= currentYear) ) {
                 moviesApp.getMovies(ids, year);
                 moviesApp.scroll('.results');
 
@@ -99,7 +95,7 @@ moviesApp.selectGenre = function() {
             
                 $('.restart').append(startOver);
 
-        } else if (isNaN(year) || year<=1873) {
+        } else if (isNaN(year) || year<=1873 || year > currentYear) {
                 $('.search-bar input[type="text"]').attr('placeholder', 'Invalid input'); 
                 $('.search-bar input[type="text"]').val('');
                 $('.search-bar input[type="text"]').toggleClass('warning');
@@ -136,24 +132,25 @@ moviesApp.displayNames = function(name) {
 //using the method below to append found movies
 moviesApp.foundResults = (movie) => {
     foundResults = `
-    <div class="movie-container">
+    <div class="single-movie">
+        <div class="movie-container">
+            <div class="poster">
+                <img src=https://image.tmdb.org/t/p/w300/${movie.poster_path} alt= '${movie.title} ${movie.original_title}'/>
+            </div>
 
-        <div class="poster">
-            <img src=https://image.tmdb.org/t/p/w300/${movie.poster_path} alt= '${movie.title} ${movie.original_title}'/>
+            <h3 class="title">${movie.title}</h3>
+            <p class="year">Released: ${movie.release_date.substring(0,4)}</p>
+            <p class="rating">Rating: ${movie.vote_average} out of 10</p>
+
+            <button type="button" class="seeDescription">See Description</button>
+
+            <button type="button" class="addToSeenBtn">Add to watched</button>
         </div>
 
-        <h3 class="title">${movie.title}</h3>
-        <p class="year">Released: ${movie.release_date.substring(0,4)}</p>
-        <p class="rating">Rating: ${movie.vote_average} out of 10</p>
-    
-        <details class="description">
-            <summary>
-                    <i class="fas fa-plus" aria-hidden="true" ></i> Description
-            </summary>
-            <p>${movie.overview}</p>
-        </details>
-
-        <button type="button">Add to watched</button>
+        <div class="movie-container-back">
+            <p class="description">${movie.overview}</p>
+            <button type="button" class="seeMovieInfo">Go back</button>
+        </div>
     </div>
     `; 
 };
@@ -193,29 +190,48 @@ moviesApp.showWatched = () => {
 
 //adding a movie to seen
 moviesApp.addToWatched = () => {
-
-    $('.results').on('click', 'button[type="button"]', function(event){
+    $('.wrapper').on('click', '.addToSeenBtn', function(event){
         event.preventDefault();
-        moviesApp.prevSibl = $(this).parent();
+        moviesApp.prevSibl = $(this).parent().parent();
 
         //adding movie to database which also adds it back to the "seen" section
-        const seenMovie = $(this).parent().html().replace('Add to watched', 'Remove from watched');
+        const seenMovie = $(this).parent().parent().html().replace('Add to watched', 'Remove from watched');
         moviesApp.dbRef.push(seenMovie);
-
         // filling the space with a movie
         moviesApp.getRandomMovie();
     });
 }
 
+// showing & hiding description
+$('.wrapper').on('click', '.seeDescription', function(){
+    let grandparent = $(this).parent().parent();
+    // flipping
+    $(grandparent).toggleClass('movie-container-flipped');
+    // hiding front side
+    $($(this).parent()).hide(300);
+    // showing back
+    $(grandparent.children('.movie-container-back')).show();
+})
+
+$('.wrapper').on('click', '.seeMovieInfo', function(){
+    let grandparent = $(this).parent().parent();
+    // flipping back
+    $(grandparent).toggleClass('movie-container-flipped');
+    // showing front side
+    $(grandparent.children('.movie-container')).show();
+    // hiding back side
+    $(grandparent.children('.movie-container-back')).hide();
+
+})
+
 
 moviesApp.removeFromWatched = () => {
-
-    $('.watched-movies').on('click', 'button[type="button"]', function(event){
+    $('.watched-movies').on('click', '.addToSeenBtn', function(event){
         event.preventDefault();
-        const key = $(this).parent().attr('data-key');
-        $(this).parent().remove();
-        moviesApp.dbRef.child(key).remove();
+        const key = $(this).parent().parent().attr('data-key');
 
+        $(this).parent().parent().remove();
+        moviesApp.dbRef.child(key).remove();
     });
 }
 
@@ -238,7 +254,9 @@ moviesApp.getRandomMovie = function() {
         moviesApp.foundResults(movieName);
 
         // replacing a previous movie(that went to SEEN section with a new RANDOM movie)
-        $(moviesApp.prevSibl).replaceWith(foundResults);
+        $(moviesApp.prevSibl).fadeOut(300, function(){
+            $(moviesApp.prevSibl).replaceWith(foundResults);
+        });
     });
 }
 
@@ -260,16 +278,13 @@ moviesApp.getSeenMovies = function() {
     
         //loop through the database object and push an <li> element into seen array
         for (property in dataObject) {
-            arrOfSeen.push(`<li data-key=${property}>${dataObject[property]}</li>`)
+            arrOfSeen.push(`<li class='single-movie' data-key=${property}>${dataObject[property]}</li>`)
         }
         //select the <ul> element and add the list of seen movies from the above array
         $('.watched-movies').html(arrOfSeen);
         
     })
 }
-
-
-
 
 moviesApp.init = function() {
     moviesApp.getSeenMovies();
@@ -285,7 +300,3 @@ moviesApp.init = function() {
 $(function() {
     moviesApp.init();
 })
-
-// Further work
-// 1. I wanted to populate an empty spot of the movie that went to "seen" section NOT with a random movie, BUT with the one
-// with the genre(s) and year specified. So, sending every movie to "seen" section, I wanted to populate new empty spots with new movies one by one from 1 to 20 taking them from the NEXT page (2). When the last movie(2) form page 2 got moved, then use page 3 and so on. API is structured in a way so that there's only 20 movies max per page. Also, while getting data, it seems that milpiple pages can't be specified. Could you suggest the best way on how to do that?
