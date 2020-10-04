@@ -18,7 +18,11 @@
 .watched-movies li {
     margin: 40px 5%;
     padding-bottom: 30px;
-    min-height: 50vh;
+    // min-height: 50vh;
+
+    > * {
+        width: 100%;
+    }
 
     button {
         padding: 10px;
@@ -64,8 +68,8 @@
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     padding: 5px 10%;
-    overflow-y: scroll;
-    min-height: 50vh;
+    // overflow-y: scroll;
+    // min-height: 50vh;
 }
 
 .movie-container-back {

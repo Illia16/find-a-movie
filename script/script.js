@@ -208,9 +208,10 @@ $('.wrapper').on('click', '.seeDescription', function(){
     // flipping
     $(grandparent).toggleClass('movie-container-flipped');
     // hiding front side
-    $($(this).parent()).hide(300);
+    $($(this).parent()).hide();
     // showing back
     $(grandparent.children('.movie-container-back')).show();
+    $(grandparent.children('.movie-container-back')).css({'position': 'static'});
 })
 
 $('.wrapper').on('click', '.seeMovieInfo', function(){
@@ -221,7 +222,7 @@ $('.wrapper').on('click', '.seeMovieInfo', function(){
     $(grandparent.children('.movie-container')).show();
     // hiding back side
     $(grandparent.children('.movie-container-back')).hide();
-
+    $(grandparent.children('.movie-container-back')).css({'position': 'absolute'});
 })
 
 

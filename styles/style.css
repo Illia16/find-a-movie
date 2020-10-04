@@ -531,7 +531,10 @@ button:focus {
 .watched-movies li {
   margin: 40px 5%;
   padding-bottom: 30px;
-  min-height: 50vh;
+}
+
+.watched-movies li > * {
+  width: 100%;
 }
 
 .watched-movies li button {
@@ -582,8 +585,6 @@ button:focus {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   padding: 5px 10%;
-  overflow-y: scroll;
-  min-height: 50vh;
 }
 
 .movie-container-back {
@@ -622,5 +623,8 @@ button:focus {
 @media (max-width: 575px) {
   .genres {
     height: initial;
+  }
+  div.watched-movies {
+    width: 90%;
   }
 }
