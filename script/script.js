@@ -59,6 +59,7 @@ moviesApp.selectGenre = function() {
     $('input[type="submit"]').on('click', function(event) {
         event.preventDefault();
 
+        $('footer').css({'display': 'flex'});
         $('section').empty();
         const selected = $('.genres .everyGenre input[type="checkbox"]');
         
@@ -162,6 +163,7 @@ moviesApp.startOver = function() {
         
         // clearing input field
         $('input[type="text"]').val('');
+        $('footer').css({'display': 'none'});
 
         // unchecking checked checkboxes
         if ($('.genres .everyGenre input[type="checkbox"]').prop("checked", true)) {

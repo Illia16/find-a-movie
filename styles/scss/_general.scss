@@ -52,3 +52,40 @@ h2 {
     font-size: 4rem;
     font-weight: initial;
 }
+
+// Footer
+footer {
+    background: #000;
+    color: #ffffff;
+    text-align: center;
+    font-size: 2rem;
+    
+    justify-content: center;
+    margin-top: 30px;
+
+    display: none;
+
+    p {
+        margin: 0;
+    }
+}
+
+footer > * {
+    padding: 5px 10px;
+    transition: all 0.3s;
+}
+
+footer .github {
+    color: rgb(255, 255, 255);
+}
+
+footer .linkedin {
+    color: #0e76a8
+}
+
+footer .github:hover,
+footer .github:focus,
+footer .linkedin:hover,
+footer .linkedin:focus {
+    transform: scale(1.2);
+}

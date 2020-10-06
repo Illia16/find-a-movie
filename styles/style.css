@@ -291,6 +291,44 @@ h2 {
   font-weight: initial;
 }
 
+footer {
+  background: #000;
+  color: #ffffff;
+  text-align: center;
+  font-size: 2rem;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 30px;
+  display: none;
+}
+
+footer p {
+  margin: 0;
+}
+
+footer > * {
+  padding: 5px 10px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+footer .github {
+  color: white;
+}
+
+footer .linkedin {
+  color: #0e76a8;
+}
+
+footer .github:hover,
+footer .github:focus,
+footer .linkedin:hover,
+footer .linkedin:focus {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
 div.watched-movies {
   background: #b71b1b;
   position: fixed;
@@ -540,6 +578,10 @@ button:focus {
 .watched-movies li button {
   padding: 10px;
   margin: 5px;
+}
+
+.single-movie > * {
+  width: 100%;
 }
 
 .results .movie-container .poster,
