@@ -3,12 +3,12 @@ div.watched-movies {
     background: #b71b1b;
 	position: fixed;
 	z-index: 5;
-    width: 400px;
+    width: 70vw;
 	left: -200%;
     top: 15%;
     bottom: 0;
     margin: 0;
-    padding: 0;
+    padding: 10px;
     overflow-y: scroll;
 }
 
@@ -167,7 +167,8 @@ button[type='button'] {
     cursor: pointer;
 }
 
-button:focus {
+button:focus,
+button:hover {
     color: #ffffff;
     background: #E50914;
 }

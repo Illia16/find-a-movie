@@ -333,12 +333,12 @@ div.watched-movies {
   background: #b71b1b;
   position: fixed;
   z-index: 5;
-  width: 400px;
+  width: 70vw;
   left: -200%;
   top: 15%;
   bottom: 0;
   margin: 0;
-  padding: 0;
+  padding: 10px;
   overflow-y: scroll;
 }
 
@@ -540,39 +540,66 @@ button[type='button'] {
   cursor: pointer;
 }
 
-button:focus {
+button:focus,
+button:hover {
   color: #ffffff;
   background: #E50914;
 }
 
+.watched-movies,
 .results {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (minmax(150px, 350px))[auto-fill];
-      grid-template-columns: repeat(auto-fill, minmax(150px, 350px));
-  grid-gap: 30px;
+  grid-auto-rows: 1fr;
+  grid-gap: 10px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   margin-bottom: 30px;
 }
 
-.results .movie-container,
-.results .movie-container-back,
-.watched-movies li {
+.results {
+  -ms-grid-columns: (minmax(150px, 200px))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(150px, 200px));
+}
+
+.watched-movies {
+  -ms-grid-columns: (200px)[auto-fit];
+      grid-template-columns: repeat(auto-fit, 200px);
+}
+
+.movie-container,
+.movie-container-back {
   border: 2px solid #E50914;
   padding-bottom: 20px;
-  background: rgba(244, 244, 244, 0.8);
+  background: rgba(244, 244, 244, 0.75);
   color: #000000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.description {
+  font-size: 1.2rem;
 }
 
 .watched-movies li {
-  margin: 40px 5%;
-  padding-bottom: 30px;
+  width: 100%;
 }
 
 .watched-movies li > * {
   width: 100%;
+  font-size: 1.2rem;
 }
 
 .watched-movies li button {
@@ -580,18 +607,15 @@ button:focus {
   margin: 5px;
 }
 
-.single-movie > * {
-  width: 100%;
-}
-
+.single-movie > *,
 .results .movie-container .poster,
 .watched-movies .movie-container .poster {
   width: 100%;
 }
 
 .movie-container > *:not(:first-child) {
-  padding: 10px;
-  margin: 5px;
+  margin: 5px 0;
+  width: 90%;
 }
 
 .restart {
@@ -620,18 +644,21 @@ button:focus {
 }
 
 .movie-container-back {
-  display: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   position: absolute;
   top: 0;
   bottom: 0;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   padding: 5px 10%;
-}
-
-.movie-container-back {
+  overflow-y: auto;
+  min-height: 50vh;
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
+  -webkit-transition: visibility 0.3s linear;
+  transition: visibility 0.3s linear;
 }
 
 .movie-container-flipped {
@@ -656,9 +683,6 @@ button:focus {
   }
   .search-bar input[type="text"] {
     width: 80%;
-  }
-  div.watched-movies {
-    width: 60%;
   }
 }
 

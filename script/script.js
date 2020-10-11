@@ -207,25 +207,33 @@ moviesApp.addToWatched = () => {
 // showing & hiding description
 $('.wrapper').on('click', '.seeDescription', function(){
     let grandparent = $(this).parent().parent();
+
     // flipping
     $(grandparent).toggleClass('movie-container-flipped');
+
     // hiding front side
-    $($(this).parent()).hide();
+    $($(this).parent()).hide(200);
+
     // showing back
     $(grandparent.children('.movie-container-back')).show();
-    $(grandparent.children('.movie-container-back')).css({'position': 'static'});
-})
+
+    setTimeout(() => { $(grandparent.children('.movie-container-back')).css({'position': 'static'}); }, 300);
+});
 
 $('.wrapper').on('click', '.seeMovieInfo', function(){
     let grandparent = $(this).parent().parent();
+
     // flipping back
     $(grandparent).toggleClass('movie-container-flipped');
-    // showing front side
-    $(grandparent.children('.movie-container')).show();
+
     // hiding back side
     $(grandparent.children('.movie-container-back')).hide();
-    $(grandparent.children('.movie-container-back')).css({'position': 'absolute'});
-})
+
+    // showing front side
+    $(grandparent.children('.movie-container')).show();
+
+    setTimeout(() => { $(grandparent.children('.movie-container-back')).css({'position': 'absolute'}); }, 300);
+});
 
 
 moviesApp.removeFromWatched = () => {
