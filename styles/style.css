@@ -550,7 +550,6 @@ button:hover {
 .results {
   display: -ms-grid;
   display: grid;
-  grid-auto-rows: 1fr;
   grid-gap: 10px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -654,11 +653,8 @@ button:hover {
   backface-visibility: hidden;
   padding: 5px 10%;
   overflow-y: auto;
-  min-height: 50vh;
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
-  -webkit-transition: visibility 0.3s linear;
-  transition: visibility 0.3s linear;
 }
 
 .movie-container-flipped {
