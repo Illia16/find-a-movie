@@ -33,24 +33,23 @@ moviesApp.getGenresId = () => {
 // Append the genres on DOM 
 moviesApp.displayGenresList = function(genresNames) {
     genresNames.forEach(function(genres) {
-        const genresAll =
+        const res =
         `
-        <div class="everyGenre" aria-label="${genres.name} genre">
-            <input type="checkbox" id="${genres.name}" name="${genres.name}" value="${genres.id}">
-            <label for="${genres.name}">${genres.name}</label>
+        <div class="article">
+            <div class="article-title">${genres.longTitle}</div>
+            <div class="article-content">${genres.longTitle}</div>
         </div>
         `
-        $('.genres').append(genresAll);
-        })
+        $('.articles-list').append(res);
+    })
 }
 
 // Putting all IDs of the movie types into array for later use
 moviesApp.IDs = [];
 moviesApp.genresID = (ids) => {
-
-        moviesApp.IDs = ids.map((id) => {
-            return id.id;
-        });
+    moviesApp.IDs = ids.map((id) => {
+        return id.id;
+    });
 }
 
 // Selecting one or multiple genres(specifying year is optional) and passing them to find movies besed on the selected genres and(or) year
