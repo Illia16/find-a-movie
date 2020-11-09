@@ -33,15 +33,15 @@ moviesApp.getGenresId = () => {
 // // Append the genres on DOM 
 moviesApp.displayGenresList = function(genresNames) {
     genresNames.forEach(function(genres) {
-        const res =
+        const genresAll =
         `
-        <div class="article">
-            <div class="article-title">${genres.longTitle}</div>
-            <div class="article-content">${genres.longTitle}</div>
+        <div class="everyGenre" aria-label="${genres.name} genre">
+            <input type="checkbox" id="${genres.name}" name="${genres.name}" value="${genres.id}">
+            <label for="${genres.name}">${genres.name}</label>
         </div>
         `
-        $('.articles-list').append(res);
-    })
+        $('.genres').append(genresAll);
+        })
 }
 
 // Putting all IDs of the movie types into array for later use
