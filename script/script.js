@@ -30,7 +30,7 @@ moviesApp.getGenresId = () => {
     })
 }
 
-// // Append the genres on DOM 
+// Append the genres on DOM
 moviesApp.displayGenresList = function(genresNames) {
     genresNames.forEach(function(genres) {
         const genresAll =
